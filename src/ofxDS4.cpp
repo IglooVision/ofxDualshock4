@@ -9,7 +9,9 @@ void ofxDS4::setup() {
 	else {
 		_updateHID();
 		_previousTimestamp = getTimestamp();
+		_buffer[0] = 0x2;
 		hid_get_feature_report(_hidDevice, _buffer, sizeof(_buffer)); // When you first pair a controller via bluetooth 
+		if (_resultFlag < 0) { ofLogNotice("unable to sent report"); }
 		_time = 0.;													  // starts in low energy mode where IMU data not sent
 		_quaternion[0] = 1.0;										  // requesting feature report puts it into full mode. Source:   
 		_quaternion[1] = 0.;										  // (https://github.com/torvalds/linux/blob/master/drivers/hid/hid-sony.c)
