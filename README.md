@@ -32,3 +32,8 @@ To pair the device:
 
 ## Compatibility ##
 Written for of openFrameworks 0.9.3, haven't tested with other versions
+
+## Troubleshooting ##
+
+### Slow update rate ###
+If the addon works but there's a large delay between device updates, it's possible a Windows power setting is to blaim. To ensure this is not the case, go to cotrol panel -> power settings, and check that high performance mode is selected. If your on balanced mode you might have problems (even on a desktop PC). 
