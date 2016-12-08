@@ -8,7 +8,7 @@ To build up an estimate estimate of controller orientation from raw acceleromete
 Igloo Vision (http://www.igloovision.com/) are intrested in this technology because of its potential to enable the intuative exploration of VR environments. 
 
 ## Installation ##
-Under windows and VS2015 the this addon can be included using the openframeworks project generator. Once you've generated your project do need to teek project settings slightly:
+Under windows and VS2015 the this addon can be included using the openframeworks project generator. Once you've generated your project do need to tweek project settings slightly:
 -   Using the solution  explorer navigate to /addons/ofxDualshock4/libs/HIDAPI/hid.c
 -  Right click on hid.c in the solution explorer and select 'properties'
 -   Check all configurations is selected in the top right hand box

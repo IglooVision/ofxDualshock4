@@ -1,6 +1,26 @@
 #include "ofxDS4.h"
 
-void ofxDS4::setup() {
+void ofxDS4::setup(ConectionMode mode) {
+
+	if (mode == USB) {
+		GX_Index = GX_INDEX_USB;
+		GY_Index = GY_INDEX_USB;
+		GZ_Index = GZ_INDEX_USB;
+		DX_Index = DX_INDEX_USB;
+		DY_Index = DY_INDEX_USB;
+		DZ_Index = DZ_INDEX_USB;
+		TIME_Index = TIME_INDEX_USB; 
+	}
+	else {
+		GX_Index = GX_INDEX_BLUETOOTH;
+		GY_Index = GY_INDEX_BLUETOOTH;
+		GZ_Index = GZ_INDEX_BLUETOOTH;
+		DX_Index = DX_INDEX_BLUETOOTH;
+		DY_Index = DY_INDEX_BLUETOOTH;
+		DZ_Index = DZ_INDEX_BLUETOOTH;
+		TIME_Index = TIME_INDEX_BLUETOOTH;
+	}
+
 	_hidDevice = hid_open(VENDOR_ID, PRODUCT_ID, NULL);
 	if (!_hidDevice) {
 		ofLogError("Unable to find a Gyro");

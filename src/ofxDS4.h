@@ -47,26 +47,23 @@
 */
 
 
-/*
 // Indices for controller connected via USB
-#define GX_INDEX 14		
-#define GY_INDEX 16
-#define GZ_INDEX 18
-#define DX_INDEX 20
-#define DY_INDEX 22
-#define DZ_INDEX 24
-#define TIME_INDEX 11 //Index of the timestamp byte
-*/
-
+#define GX_INDEX_USB 14		
+#define GY_INDEX_USB 16
+#define GZ_INDEX_USB 18
+#define DX_INDEX_USB 20
+#define DY_INDEX_USB 22
+#define DZ_INDEX_USB 24
+#define TIME_INDEX_USB 11 //Index of the timestamp byte
 
 // Indices for controller connected via Bluetooth
-#define GX_INDEX 16
-#define GY_INDEX 18
-#define GZ_INDEX 20
-#define DX_INDEX 22
-#define DY_INDEX 24
-#define DZ_INDEX 26
-#define TIME_INDEX 13
+#define GX_INDEX_BLUETOOTH 16
+#define GY_INDEX_BLUETOOTH 18
+#define GZ_INDEX_BLUETOOTH 20
+#define DX_INDEX_BLUETOOTH 22
+#define DY_INDEX_BLUETOOTH 24
+#define DZ_INDEX_BLUETOOTH 26
+#define TIME_INDEX_BLUETOOTH 13
 
 
 //****************************   ALGO' SETTING    ****************************//
@@ -81,26 +78,26 @@
 */
 #define BETA 0.5
 
-
+enum ConectionMode {USB, BLUETOOTH};
 
 class ofxDS4{
 
 	public:
-		void setup();
+		void setup(ConectionMode mode = BLUETOOTH);
 		void update();
 		void close();
 		void setBeta(float beta) { _beta = beta; }
 		bool getDS4Found() { return _hidDevice; }
 		
-		int getRawGyroX()		{ return _readInt16LE(_buffer, GX_INDEX); }
-		int getRawGyroY()		{ return _readInt16LE(_buffer, GY_INDEX); }
-		int getRawGyroZ()		{ return _readInt16LE(_buffer, GZ_INDEX); }
+		int getRawGyroX()		{ return _readInt16LE(_buffer, GX_Index); }
+		int getRawGyroY()		{ return _readInt16LE(_buffer, GY_Index); }
+		int getRawGyroZ()		{ return _readInt16LE(_buffer, GZ_Index); }
 
-		int getRawAccelX()		{ return _readInt16LE(_buffer, DX_INDEX); }
-		int getRawAccelY()		{ return _readInt16LE(_buffer, DY_INDEX); }
-		int getRawAccelZ()		{ return _readInt16LE(_buffer, DZ_INDEX); }
+		int getRawAccelX()		{ return _readInt16LE(_buffer, DX_Index); }
+		int getRawAccelY()		{ return _readInt16LE(_buffer, DY_Index); }
+		int getRawAccelZ()		{ return _readInt16LE(_buffer, DZ_Index); }
 
-		int getRawTimestamp() { return _readInt16LE(_buffer, TIME_INDEX); }
+		int getRawTimestamp() { return _readInt16LE(_buffer, TIME_Index); }
 		float getTimestamp() { return float(getRawTimestamp() * TIME_FACTOR);  }
 		float getTime() { return _time; }
 
@@ -140,4 +137,11 @@ class ofxDS4{
 		float _quaternion[4];
 		float _beta;
 
+		int GX_Index;
+		int GY_Index; 
+		int GZ_Index;
+		int DX_Index; 
+		int DY_Index;
+		int DZ_Index; 
+		int TIME_Index; 
 };
